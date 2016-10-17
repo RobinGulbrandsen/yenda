@@ -15,7 +15,7 @@ var BaseRepository = function(Schema){
   };
 
   var readAll = function () {
-    return Schema.find({}).exec();
+    return Schema.find({}).sort({createdAt: 'desc'}).exec();
   };
 
   var update = function (e) {
