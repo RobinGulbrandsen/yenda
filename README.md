@@ -52,14 +52,15 @@ The application is created with the MEAN stack, and Socket.io for live Chat
 
 # Setup Developer Enviroment
 
-```
+```sh
 > git clone [repository.git]
 > cd [repository]
 > npm install
 ```
 
 Grunt supports the following tasks
-```
+
+```sh
 > grunt watch
 > grunt build
 > grunt test
