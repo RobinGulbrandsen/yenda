@@ -63,4 +63,43 @@ Grunt supports the following tasks
 > grunt watch
 > grunt build
 > grunt test
+
+# Project Structure
+
+```
+|- server/
+  |- controllers/       //Controllers handles I/O
+      |- NewsController.js
+      |- server.js
+    |- models/          //Models for entities in the system
+      |- News.js
+      |- User.js
+    |- repositories/      //Repositories handles persistence
+      |- NewsRepository 
+      |- UserRepository.js
+    |- services/        //Services binds the system togheter
+      |- NewsService.js
+      |- UserService.js
+    |- test/          //Tests for the server
+    |- package.json       //Dependancies for the server
+    |- routes.js        //FrontController for routes
+    |- server.js        //Starts the server and handles middleware
+|- client/
+  |- src/
+      |- app/         //Holds the sub parts of the application
+          |- news/
+              |- news.js
+                |- news.tmpl.html
+                |- news.less
+      |- assets/        //Images and other static assets
+          |- styles.less    //Shared styles for the client
+        |- common/        //Common services for the client
+          |- httpService.js //Factory for $http
+            |- userSevice.js  //Handles user authentication and tokens
+        |- app.js       //Client kickstarter
+        |- routes.js      //Routing in the client
+  |- test/          //Tests for hte client 
+    |- bower.js         //Dependancies for the client
+|- Gruntfile.js         //Builds the system
+|- .gitignore
 ```
