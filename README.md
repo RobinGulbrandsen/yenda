@@ -89,10 +89,10 @@ Grunt supports the following tasks
 |- client/
   |- src/
       |- app/                 //Holds the sub parts of the application
-          |- news/
-              |- news.js
-                |- news.tmpl.html
-                |- news.less
+          |- news/            //Each package in app contains..
+              |- news.js      //.. a controller,
+              |- news.tmpl.html // a view template
+              |- news.less    // and specialized less
       |- assets/              //Images and other static assets
           |- styles.less      //Shared styles for the client
         |- common/            //Common services for the client
