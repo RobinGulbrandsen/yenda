@@ -70,22 +70,23 @@ Grunt supports the following tasks
 
 ```
 |- server/
-  |- controllers/             //Controllers handles I/O
-    |- NewsController.js
-    |- server.js
-  |- models/                  //Models for entities in the system
-    |- News.js
-    |- User.js
-  |- repositories/            //Repositories handles persistence
-    |- NewsRepository 
-    |- UserRepository.js
-  |- services/                //Services binds the system togheter
-    |- NewsService.js
-    |- UserService.js
+  |- src/
+    |- controllers/           //Controllers handles I/O
+      |- NewsController.js
+      |- server.js
+    |- models/                //Models for entities in the system
+      |- News.js
+      |- User.js
+    |- repositories/          //Repositories handles persistence
+      |- NewsRepository 
+      |- UserRepository.js
+    |- services/              //Services binds the system togheter
+      |- NewsService.js
+      |- UserService.js
+    |- routes.js              //FrontController for routes
+    |- server.js              //Starts the server and handles middleware
   |- test/                    //Tests for the server
   |- package.json             //Dependancies for the server
-  |- routes.js                //FrontController for routes
-  |- server.js                //Starts the server and handles middleware
 |- client/
   |- src/
       |- app/                 //Holds the sub parts of the application
