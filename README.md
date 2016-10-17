@@ -56,6 +56,7 @@ The application is created with the MEAN stack, and Socket.io for live Chat
 > git clone [repository.git]
 > cd [repository]
 > npm install
+> npm install -g grunt-cli
 ```
 
 Grunt supports the following tasks
@@ -86,7 +87,6 @@ Grunt supports the following tasks
     |- routes.js              //FrontController for routes
     |- server.js              //Starts the server and handles middleware
   |- test/                    //Tests for the server
-  |- package.json             //Dependancies for the server
 |- client/
   |- src/
       |- app/                 //Holds the sub parts of the application
@@ -102,7 +102,8 @@ Grunt supports the following tasks
       |- app.js               //Client kickstarter
       |- routes.js            //Routing in the client
   |- test/                    //Tests for hte client 
-  |- bower.js                 //Dependancies for the client
+|- bower.js                   //Dependancies for the client
 |- Gruntfile.js               //Builds the system
+|- package.json               //Dependancies for the server
 |- .gitignore
 ```
