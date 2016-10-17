@@ -36,17 +36,17 @@ The application is created with the MEAN stack, and Socket.io for live Chat
 
 # API
 
-| Method | Uri | Authroization | Comment |
-|--------|-----|---------|--|
-| POST   | /login | Anonymous | |
-| POST   | /signup | Anonymous | |
-| GET | /news | Anonymous | Gets all news artichles with paging |
-| GET | /news/:id | Administrator, Member | |
-| POST | /news | Administrator | |
-| PUT | /news | Adminstrator | |
-| DELETE | /news/:id | Administrator | |
-| POST | /news/:id/comments | Administrator, Member | |
-| PUT | /news/:id/comments | Administrator, Member | Users can only update own comments |
+| Method | Uri                | Authroization         | Comment |
+|--------|--------------------|-----------------------|---------|
+| POST   | /login             | Anonymous             |         |
+| POST   | /signup            | Anonymous             |         |
+| GET    | /news              | Anonymous             | Gets all news artichles with paging |
+| GET    | /news/:id          | Administrator, Member |         |
+| POST   | /news              | Administrator         |         |
+| PUT    | /news              | Adminstrator          |         |
+| DELETE | /news/:id          | Administrator         |         |
+| POST   | /news/:id/comments | Administrator, Member |         |
+| PUT    | /news/:id/comments | Administrator, Member | Users can only update own comments |
 | DELETE | /news/:id/comments | Administrator, Member | Members can delete own comments, Administrators can delete all comment |
 
 
