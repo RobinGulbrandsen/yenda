@@ -64,6 +64,7 @@ Grunt supports the following tasks
 > grunt watch
 > grunt build
 > grunt test
+```
 
 # Project Structure
 
