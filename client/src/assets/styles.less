@@ -84,6 +84,7 @@ input[type='submit'], button {
     border: 1px solid @orange;
     color: @text-color;
     resize: none;
+    clear: both;
   }
 
   textarea:focus {
@@ -106,6 +107,12 @@ input[type='submit'], button {
     width: 100%;
     margin-top: 0px;
     margin-bottom: 0px;
+  }
+
+  .error {
+    float: right;
+    font-style: italic;
+    color: @orange;
   }
 }
 

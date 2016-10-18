@@ -14,6 +14,23 @@ angular.module( 'yenda', [
   $scope.articles = [];
   $scope.newArticle = {};
   $scope.isEdit = false;
+  $scope.validation = {
+    article: {}
+  };
+
+  var validateArticle = function() {
+    $scope.validation.article = {};
+    var hasErrors = false;
+    if (!$scope.newArticle.title) {
+      $scope.validation.article.title = 'cant be blank';
+      hasErrors = true;
+    }
+    if(!$scope.newArticle.content) {
+      $scope.validation.article.content = 'cant be blank';
+      hasErrors = true;
+    }
+    return !hasErrors;
+  };
 
   $scope.getAll = function() {
     httpService.getAll("news", false)
@@ -26,11 +43,10 @@ angular.module( 'yenda', [
   $scope.getAll();
 
   $scope.addArticle = function() {
-    if (!$scope.newArticle.title || !$scope.newArticle.content) {
-      console.log('show error messages');
+    if (!validateArticle()) {
       return;
     }
-
+    
     httpService.create('news', $scope.newArticle)
     .success(function(data, status, headers, config) {
       $scope.articles.unshift(data);
@@ -46,6 +62,10 @@ angular.module( 'yenda', [
   };
 
   $scope.saveArticleChanges = function() {
+    if (!validateArticle()) {
+      return;
+    }
+
     if ($scope.isEdit === false) {
       return;
     }
