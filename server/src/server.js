@@ -7,6 +7,8 @@ var app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+console.log('getting static files from ', __dirname + '/public');
+app.use(express.static(__dirname + '/public'));
 
 mongoose.connect(process.env.mongodb + 'yenda');
 console.log('connecting to mongodb at ', process.env.mongodb);

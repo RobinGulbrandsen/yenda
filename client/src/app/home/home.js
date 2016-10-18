@@ -1,4 +1,5 @@
-angular.module( 'yenda.home', [
+angular.module('yenda.home', [
+  'ui.router'
 ])
 
 .config(function config( $stateProvider ) {

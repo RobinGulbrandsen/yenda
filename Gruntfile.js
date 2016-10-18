@@ -8,6 +8,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-express-server');
   grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-html2js');
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -40,7 +41,7 @@ module.exports = function(grunt) {
 
     clean: {
       build: {
-        src: ['server/public/src/*']
+        src: ['server/src/public/*']
       }
     },
 
@@ -61,7 +62,7 @@ module.exports = function(grunt) {
     copy: {
       index: {
         files: [{
-          src: [ 'client/src/index.html' ],
+          src: ['client/src/index.html'],
           dest: 'server/src/public/index.html'
         }]
       },
@@ -76,6 +77,13 @@ module.exports = function(grunt) {
       }
     },
 
+    html2js: {
+      app: {
+        src: ['client/src/**/*.tpl.html'],
+        dest: 'server/src/public/templates-app.js'
+      }
+    },
+
     delta: {
       jssrc: {
         files: [
@@ -87,8 +95,13 @@ module.exports = function(grunt) {
       html: {
         files: ['client/src/index.html'],
         tasks: ['copy:index']
+      },
+
+      tpls: {
+        files: ['client/src/**/*.tpl.html'],
+        tasks: ['html2js:app']
       }
-    }
+    },
   });
   
   ///////////////////////
@@ -99,7 +112,8 @@ module.exports = function(grunt) {
                                'concat:js',
                                'concat:less',
                                'copy:index',
-                               'copy:vendor']);
+                               'copy:vendor',
+                               'html2js:app']);
 
   grunt.renameTask('watch', 'delta');
   grunt.registerTask('watch:client', ['build', 'express:dev', 'delta']);
