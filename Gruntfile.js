@@ -52,20 +52,11 @@ module.exports = function(grunt) {
       js: {
         src: ['client/src/**/*.js'],
         dest: 'server/src/public/app.js'
-      },
-      less: {
-        src: ['client/src/**/*.less'],
-        dest: 'server/src/public/styles.less'
       }
     },
 
     less: {
       build: {
-        files: {
-          'server/src/public/styles.css': 'client/src/**/*.less'
-        }
-      },
-      compile: {
         files: {
           'server/src/public/styles.css': 'client/src/**/*.less'
         },
@@ -135,7 +126,7 @@ module.exports = function(grunt) {
   
   grunt.registerTask('build', ['clean',
                                'concat:js',
-                               'concat:less',
+                               'less',
                                'copy:index',
                                'copy:vendor',
                                'html2js:app']);
