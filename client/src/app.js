@@ -1,6 +1,7 @@
 angular.module( 'yenda', [
-  'yenda.home',
-  'ui.router'
+  'templates-app',
+  'ui.router',
+  'yenda.home'
 ])
 
 .config(function myAppConfig($stateProvider, $urlRouterProvider) {
