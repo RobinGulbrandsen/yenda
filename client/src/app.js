@@ -7,8 +7,27 @@ angular.module( 'yenda', [
   'yanda.common.auth-service'
 ])
 
-.config(function myAppConfig($stateProvider, $urlRouterProvider) {
+.config(function myAppConfig($stateProvider, $urlRouterProvider, $httpProvider) {
   $urlRouterProvider.otherwise('/');
+  $httpProvider.interceptors.push('AttachTokens');
+})
+
+.factory('AttachTokens', function ($window) {
+  // this is an $httpInterceptor
+  // its job is to stop all out going request
+  // then look in local storage and find the user's token
+  // then add it to the header so the server can validate the request
+  var attach = {
+    request: function (object) {
+      var jwt = $window.localStorage.getItem('com.yanda');
+      if (jwt) {
+        object.headers['x-access-token'] = jwt;
+      }
+      object.headers['Allow-Control-Allow-Origin'] = '*';
+      return object;
+    }
+  };
+  return attach;
 })
 
 .controller('AppCtrl', function AppCtrl($scope, $window, httpService, modalService, authService) {
@@ -111,7 +130,7 @@ angular.module( 'yenda', [
       .then(function (currentUser) {
         $scope.currentUser = currentUser.data.user;
         $scope.currentUser.token = currentUser.data.token;
-        $window.localStorage.setItem('com.yanda', currentUser.token);
+        $window.localStorage.setItem('com.yanda', currentUser.data.token);
         $scope.loginUser = {};
       })
       .catch(function (error) {

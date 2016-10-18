@@ -5,7 +5,7 @@ var NewsService = require('../services/NewsService');
 module.exports = {
   create: function (req, res) {
     // Authenticate user - admin
-    new UserService().checkAuth(req.headers['x-access-token'])
+    new UserService().checkAuth(req.headers['x-access-token'], ['Admin'])
     .then(function(ok) {
       var article = req.body;
 
@@ -31,7 +31,6 @@ module.exports = {
 
   read: function (req, res) {
     var id = req.params.id;
-    console.log(id);
     if (id === undefined) {
       return HttpStatus.BAD_REQUEST(res, 'Id must be provided');
     }
@@ -60,32 +59,40 @@ module.exports = {
 
   update: function (req, res) {
     //Authenticate user - admin
+    new UserService().checkAuth(req.headers['x-access-token'], ['Admin'])
+    .then(function(ok) {
+      var article = req.body;
 
-    var article = req.body;
+      // Validate object
+      if (!article ||
+        !article.title || article.title === '' ||
+        !article.content || article.content === '') {
+        return HttpStatus.BAD_REQUEST(res);
+      }
 
-    // Validate object
-    if (!article ||
-      !article.title || article.title === '' ||
-      !article.content || article.content === '') {
-      return HttpStatus.BAD_REQUEST(res);
-    }
-
-    new NewsService().update(article).then(function(updatedArticle) {
-      return res.status(200).send(updatedArticle);
+      new NewsService().update(article).then(function(updatedArticle) {
+        return res.status(200).send(updatedArticle);
+      }).catch(function(error) {
+        return HttpStatus.INTERNAL_SERVER_ERROR(res, error);
+      });
     }).catch(function(error) {
-      return HttpStatus.INTERNAL_SERVER_ERROR(res, error);
+      return HttpStatus.UNAUTHORIZED(res);
     });
   },
 
   destroy: function (req, res) {
     //Authenticate user - admin
+    new UserService().checkAuth(req.headers['x-access-token'], ['Admin'])
+    .then(function(ok) {
+      var id = req.params.id;
 
-    var id = req.params.id;
-
-    new NewsService().destroy(id).then(function() {
-      return res.status(200).send();
+      new NewsService().destroy(id).then(function() {
+        return res.status(200).send();
+      }).catch(function(error) {
+        return HttpStatus.INTERNAL_SERVER_ERROR(res, error);
+      });
     }).catch(function(error) {
-      return HttpStatus.INTERNAL_SERVER_ERROR(res, error);
+      return HttpStatus.UNAUTHORIZED(res);
     });
   }
 };

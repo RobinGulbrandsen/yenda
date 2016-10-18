@@ -24,7 +24,7 @@ var UserService = function(){
         }
 
         var authenticated = {
-          token: jwt.encode(passwordMatch, 'secret'),
+          token: jwt.encode(foundUser, 'secret'),
           user: foundUser
         };
         return Promise.resolve(authenticated);
@@ -56,8 +56,8 @@ var UserService = function(){
     return repo.readAll();
   };
 
-  var checkAuth = function(token) {
-    console.log('validating header', token);
+  var checkAuth = function(token, roles) {
+    roles = roles || [];
     return new Promise(function(resolve, reject) {
       if(!token) {
         reject({
@@ -70,9 +70,15 @@ var UserService = function(){
       
       return repo.findUser(user).then(function(foundUser) {
         if (foundUser) {
-          Promise.resolve();
+          if (roles.indexOf(foundUser.role) > -1) {
+            resolve(true);
+          } else {
+            reject({
+             'status': 401,
+              'message': 'You are unauthorized'
+            });
+          }
         } else {
-          Promise.reject();
         }
       });
     });
