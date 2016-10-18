@@ -33,7 +33,7 @@ angular.module( 'yenda', [
   };
 
   $scope.getAll = function() {
-    httpService.getAll("news", false)
+    httpService.getAll("api/news", false)
     .success(function(data, status, headers, config) {
       $scope.articles = data;
     }).error(function(data, status, headers, config) {
@@ -47,7 +47,7 @@ angular.module( 'yenda', [
       return;
     }
     
-    httpService.create('news', $scope.newArticle)
+    httpService.create('api/news', $scope.newArticle)
     .success(function(data, status, headers, config) {
       $scope.articles.unshift(data);
       $scope.newArticle = {};
@@ -70,7 +70,7 @@ angular.module( 'yenda', [
       return;
     }
 
-    httpService.update('news', $scope.newArticle)
+    httpService.update('api/news', $scope.newArticle)
     .success(function(data, status, headers, config) {
       $scope.newArticle = {};
       $scope.getAll();
