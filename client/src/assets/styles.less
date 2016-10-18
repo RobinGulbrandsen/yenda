@@ -4,16 +4,16 @@ body {
   background-color: black;
 }
 
-header {
-  border-bottom: 1px solid @orange;
-}
-
 h1, h2, h3, h4, h5 {
   color: @orange-light;
 }
 
 label {
   color: @text-color;
+  text-shadow: -1px 0 black,
+              0 1px black,
+              1px 0 black,
+              0 -1px black;
 }
 
 input[type='text'], input[type='password'] {
@@ -25,7 +25,12 @@ input[type='text'], input[type='password'] {
 input[type='submit'], button {
   background-color: @orange;
   border-color: @orange-dark;
+  color: @text-color;
   border-radius: 4px;
+  text-shadow: -1px 0 black,
+              0 1px black,
+              1px 0 black,
+              0 -1px black;
 }
 
 .intro-header {
@@ -101,4 +106,21 @@ input[type='submit'], button {
     margin-top: 0px;
     margin-bottom: 0px;
   }
+}
+
+.article-glyphicon {
+  font-size: 16px;
+}
+
+.article-glyphicon:hover {
+  font-size: 18px;
+  cursor: pointer;
+  color: @orange;
+}
+
+.article-content {
+  text-align: justify;
+  color: #DDB280;
+  font-size: 16px;
+  white-space: pre-wrap;
 }

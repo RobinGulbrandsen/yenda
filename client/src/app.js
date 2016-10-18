@@ -9,12 +9,11 @@ angular.module( 'yenda', [
 })
 
 .controller('AppCtrl', function AppCtrl($scope, httpService) {
-  console.log('App Ctrl is alive');
   $scope.articles = [];
   $scope.newArticle = {};
+  $scope.isEdit = false;
 
   $scope.getAll = function() {
-    console.log('fetching');
     httpService.getAll("news", false)
     .success(function(data, status, headers, config) {
       $scope.articles = data;
@@ -32,13 +31,45 @@ angular.module( 'yenda', [
 
     httpService.create('news', $scope.newArticle)
     .success(function(data, status, headers, config) {
-      $scope.articles.push(data);
+      $scope.articles.unshift(data);
       $scope.newArticle = {};
     }).error(function(data, status, headers, config) {
       console.log(data);
     });
-    console.log('create new');
-    console.log('article', $scope.newArticle);
+  };
+
+  $scope.editArticle = function(article) {
+    $scope.isEdit = true;
+    $scope.newArticle = article;
+  };
+
+  $scope.saveArticleChanges = function() {
+    if ($scope.isEdit === false) {
+      return;
+    }
+
+    httpService.update('news', $scope.newArticle)
+    .success(function(data, status, headers, config) {
+      $scope.newArticle = {};
+      $scope.getAll();
+    }).error(function(data, status, headers, config) {
+      console.log(data);
+    });
+  };
+
+  $scope.cancelEditArticle = function() {
+    $scope.isEdit = false;
+    $scope.newArticle = {};
+    console.log('cancel edit');
+  };
+
+  $scope.removeArticle = function(id) {
+    httpService.deleteElement('news/' + id)
+    .success(function(data, status, headers, config) {
+      $scope.getAll();
+    }).error(function(data, status, headers, config) {
+      console.log(data);
+    });
   };
 
 });
