@@ -11,7 +11,7 @@ module.exports = {
     if (!article ||
       !article.title || article.title === '' ||
       !article.content || article.content === '') {
-      return BaseController.BAD_REQUEST(res);
+      return HttpStatus.BAD_REQUEST(res);
     }
 
     // Pas request to service and return
@@ -26,7 +26,7 @@ module.exports = {
     var id = req.params.id;
     console.log(id);
     if (id === undefined) {
-      return BaseController.BAD_REQUEST(res, 'Id must be provided');
+      return HttpStatus.BAD_REQUEST(res, 'Id must be provided');
     }
 
     new NewsService().read(id).then(function(news) {
@@ -60,7 +60,7 @@ module.exports = {
     if (!article ||
       !article.title || article.title === '' ||
       !article.content || article.content === '') {
-      return BaseController.BAD_REQUEST(res);
+      return HttpStatus.BAD_REQUEST(res);
     }
 
     new NewsService().update(article).then(function(updatedArticle) {
