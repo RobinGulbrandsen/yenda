@@ -170,4 +170,6 @@ module.exports = function(grunt) {
 
   grunt.registerTask('style', ['less:compile']);
 
+  grunt.registerTask('start', ['build', 'nodemon:dev']);
+
 };

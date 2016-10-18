@@ -11,7 +11,7 @@
     "url": "https://github.com/RobinGulbrandsen/yenda.git"
   },
   "scripts": {
-    "start": "grunt build"
+    "start": "grunt start"
   },
   "author": "Robin Gulbrandsen",
   "license": "MIT",
