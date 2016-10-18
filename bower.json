@@ -1,0 +1,13 @@
+{
+  "name": "Yenda",
+  "version": "1.0.0",
+  "devDependencies": {
+    "angular": "1.4.9",
+    "angular-mocks": "1.4.9",
+    "bootstrap": "~3.1",
+    "angular-bootstrap": "1.1.1",
+    "angular-ui-router": "0.2.17"
+  },
+  "dependencies": {
+  }
+}
