@@ -105,6 +105,9 @@ module.exports = function(grunt) {
         },{
           src: ['bower_components/angular-ui-router/release/angular-ui-router.min.js'],
           dest: 'server/src/public/vendor/angular-ui-router.min.js'
+        },{
+          src: ['bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js'],
+          dest: 'server/src/public/vendor/angular-bootstrap/ui-bootstrap-tpls.min.js'
         }]
       }
     },

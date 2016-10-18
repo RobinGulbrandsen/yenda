@@ -1,14 +1,16 @@
 angular.module( 'yenda', [
   'templates-app',
   'ui.router',
-  'yanda.common.http-service'
+  'ui.bootstrap',
+  'yanda.common.http-service',
+  'yanda.common.modal-service'
 ])
 
 .config(function myAppConfig($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/');
 })
 
-.controller('AppCtrl', function AppCtrl($scope, httpService) {
+.controller('AppCtrl', function AppCtrl($scope, httpService, modalService) {
   $scope.articles = [];
   $scope.newArticle = {};
   $scope.isEdit = false;
@@ -64,12 +66,13 @@ angular.module( 'yenda', [
   };
 
   $scope.removeArticle = function(id) {
-    httpService.deleteElement('news/' + id)
-    .success(function(data, status, headers, config) {
-      $scope.getAll();
-    }).error(function(data, status, headers, config) {
-      console.log(data);
+    modalService.confirmDialog("Delete Element", "Are you sure you want to delete?", function() {
+      httpService.deleteElement('news/' + id)
+      .success(function(data, status, headers, config) {
+        $scope.getAll();
+      }).error(function(data, status, headers, config) {
+        console.log(data);
+      });
     });
   };
-
 });

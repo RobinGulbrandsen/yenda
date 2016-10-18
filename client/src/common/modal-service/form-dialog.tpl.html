@@ -1,0 +1,18 @@
+<div class="modal-header">
+    <h3 class="modal-title">{{ title }}</h3>
+</div>
+
+<div class="modal-body">
+	<form>
+		<div class="form-group">	
+			<label>Type in your name:</label>
+			<span class="error">{{ formData.error.name }}</span><br />
+			<input type="text" data-ng-model="formData.name" placeholder="Name..." />
+		</div>
+	</form>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-success" ng-click="ok()">Ok</button>
+    <button class="btn btn-danger" ng-click="cancel()">Cancel</button>
+</div>

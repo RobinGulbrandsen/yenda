@@ -10,6 +10,6 @@
   },
   "dependencies": {
     "bootstrap": "^3.3.7",
-    "ui.bootstrap": "^2.2.0"
+    "ui.bootstrap": "angular-ui-bootstrap#^2.2.0"
   }
 }
