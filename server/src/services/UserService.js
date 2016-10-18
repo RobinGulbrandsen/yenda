@@ -56,9 +56,32 @@ var UserService = function(){
     return repo.readAll();
   };
 
+  var checkAuth = function(token) {
+    console.log('validating header', token);
+    return new Promise(function(resolve, reject) {
+      if(!token) {
+        reject({
+          'status': 401,
+          'message': 'You are unauthorized'
+        });
+      }
+
+      var user = jwt.decode(token, 'secret');
+      
+      return repo.findUser(user).then(function(foundUser) {
+        if (foundUser) {
+          Promise.resolve();
+        } else {
+          Promise.reject();
+        }
+      });
+    });
+  };
+
   return {
     login: login,
     signup: signup,
+    checkAuth: checkAuth,
 
     readAll: readAll
   };

@@ -110,7 +110,9 @@ angular.module( 'yenda', [
     authService.signin($scope.loginUser)
       .then(function (currentUser) {
         $scope.currentUser = currentUser.data.user;
+        $scope.currentUser.token = currentUser.data.token;
         $window.localStorage.setItem('com.yanda', currentUser.token);
+        $scope.loginUser = {};
       })
       .catch(function (error) {
         console.error(error);

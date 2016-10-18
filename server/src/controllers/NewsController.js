@@ -1,24 +1,31 @@
 var HttpStatus = require('./HttpStatus');
+var UserService = require('../services/UserService');
 var NewsService = require('../services/NewsService');
 
 module.exports = {
   create: function (req, res) {
     // Authenticate user - admin
-
-    var article = req.body;
+    new UserService().checkAuth(req.headers['x-access-token'])
+    .then(function(ok) {
+      var article = req.body;
 
      // Validate object
-    if (!article ||
-      !article.title || article.title === '' ||
-      !article.content || article.content === '') {
-      return HttpStatus.BAD_REQUEST(res);
-    }
+      if (!article ||
+        !article.title || article.title === '' ||
+        !article.content || article.content === '') {
+        return HttpStatus.BAD_REQUEST(res);
+      }
 
-    // Pas request to service and return
-    new NewsService().create(article).then(function(newArticle) {
-      return res.status(201).send(newArticle);
+      // Pas request to service and return
+      new NewsService().create(article).then(function(newArticle) {
+        return res.status(201).send(newArticle);
+      }).catch(function(error) {
+        return HttpStatus.INTERNAL_SERVER_ERROR(res, error);
+      });
+
+
     }).catch(function(error) {
-      return HttpStatus.INTERNAL_SERVER_ERROR(res, error);
+      return HttpStatus.UNAUTHORIZED(res);
     });
   },
 

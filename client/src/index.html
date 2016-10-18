@@ -26,14 +26,14 @@
     <div class="container-fluid">
       <div class="collapse navbar-collapse">
         
-        <div class="col-md-2 pull-right" ng-show="currentUser.username">
+        <div class="col-md-2 pull-right" ng-show="currentUser.token">
           <form class="navbar-form">
             <label class="nav-item">Hello, {{ currentUser.username }}</label>
             <button class="nav-item" class="btn" ng-click="logout()">Logout</button>
           </form>
         </div>
 
-        <div class="col-md-5 pull-right" ng-show="!currentUser.username">
+        <div class="col-md-5 pull-right" ng-show="!currentUser.token">
           <form class="navbar-form" ng-click="login()">
             <label class="nav-item">Username:</label>
             <input class="nav-item" ng-model="loginUser.username" type="text">
