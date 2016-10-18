@@ -58,7 +58,7 @@ module.exports = function(grunt) {
     less: {
       build: {
         files: {
-          'server/src/public/styles.css': 'client/src/**/*.less'
+          'server/src/public/assets/styles.css': 'client/src/**/*.less'
         },
         options: {
           cleancss: true,
@@ -76,11 +76,17 @@ module.exports = function(grunt) {
       },
       vendor: {
         files: [{
-          src: [ 'bower_components/angular/angular.min.js' ],
+          src: ['bower_components/angular/angular.min.js'],
           dest: 'server/src/public/vendor/angular.min.js'
         },{
-          src: [ 'bower_components/angular-ui-router/release/angular-ui-router.min.js' ],
+          src: ['bower_components/angular-ui-router/release/angular-ui-router.min.js'],
           dest: 'server/src/public/vendor/angular-ui-router.min.js'
+        }]
+      },
+      styles: {
+        files: [{
+          src: ['bower_components/bootstrap/dist/css/bootstrap.min.css'],
+          dest: 'server/src/public/assets/bootstrap.min.css'
         }]
       }
     },
@@ -129,6 +135,7 @@ module.exports = function(grunt) {
                                'less',
                                'copy:index',
                                'copy:vendor',
+                               'copy:styles',
                                'html2js:app']);
 
   grunt.renameTask('watch', 'delta');

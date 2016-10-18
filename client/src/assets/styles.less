@@ -1,3 +1,65 @@
+@import 'variables.less';
+
 body {
-  background-color: blue;
+  background-color: black;
+}
+
+header {
+  border-bottom: 1px solid @orange;
+}
+
+h1, h2, h3, h4, h5 {
+  color: @orange-light;
+}
+
+label {
+  color: @text-color;
+}
+
+input[type='text'], input[type='password'] {
+  background-color: @orange;
+  border-color: @orange-dark;
+  color: @text-color;
+}
+
+input[type='submit'], button {
+  background-color: @orange;
+  border-color: @orange-dark;
+  color: @text-color;
+}
+
+.intro-header {
+  height: 250px;
+  width: 100%;
+  background-image: url('/assets/banner.png');
+  background-size: 100% 100%;
+  background-color: black;
+}
+
+.chat {
+  margin: 2px;
+  padding: 2px;
+  min-height: 350px;
+  background-color: @orange-dark;
+  border-color: @orange;
+  overflow-y: auto;
+
+  .messages {
+    height: 320px;
+  }
+
+  form {
+    input[type='text'] {
+      padding: 2px;
+      width: 87%;
+    }
+
+    input[type='text']:focus {
+      outline: none;
+    }
+  }
+}
+
+.center {
+  text-align: center;
 }

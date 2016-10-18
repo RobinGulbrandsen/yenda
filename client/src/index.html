@@ -5,6 +5,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/styles.css">
+
   <!-- Vendor files -->
   <script src="vendor/angular.min.js"></script>
   <script src="vendor/angular-ui-router.min.js"></script>
@@ -14,7 +18,57 @@
   <script src="app.js"></script>
 </head>
 <body>
-  <h1>Hello world!</h1>
-  <div ui-view="main"></div>  
+  <header class="intro-header">
+  </header>
+
+  <nav class="navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse">
+        <div class="col-md-5 pull-right">
+          <form class="navbar-form" >
+            <label class="nav-item">Username:</label>
+            <input class="nav-item"type="text">
+            <label class="nav-item">Password:</label>
+            <input class="nav-item" type="password">
+            <input class="nav-item" type="submit" value="Login">
+            <button class="nav-item" class="btn">Register</button>
+          </form>
+        </div>        
+      </div>
+    </div>
+  </nav>
+
+  <section class="wrapper container">
+    <div class="row">
+      <!-- Blog Entries Column -->
+      <div class="col-md-8">
+        <!-- First Blog Post -->
+        <h2>Blog Post Title</a></h2>
+        <p><span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM</p>
+        
+        <img class="img-responsive" src="http://placehold.it/900x300" alt="">
+        
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora, necessitatibus inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti debitis ipsum officiis rerum.</p>
+        
+        <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+      </div>
+
+      <!-- Chat -->
+      <div class="col-md-4">
+        <!-- Blog Search Well -->
+        <h2 class="center">Chat with us</h2>
+        <div class="well chat">
+          <div class="messages">
+          </div>
+          <form>
+            <input type="text">
+            <input type="submit" value="Ok">
+          </form>
+        </div>
+    </div>
+  </section>
+
+
+
 </body>
 </html>
