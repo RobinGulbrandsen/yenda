@@ -15,5 +15,5 @@ angular.module('yenda.home', [
 })
 
 .controller('HomeCtrl', function HomeController($scope) {
-  console.log('HomeCtrl is alive');
+  console.log('home ctrl is alive');
 });

@@ -9,6 +9,7 @@
     "angular-ui-router": "0.2.17"
   },
   "dependencies": {
-    "bootstrap": "^3.3.7"
+    "bootstrap": "^3.3.7",
+    "ui.bootstrap": "^2.2.0"
   }
 }

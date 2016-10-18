@@ -50,11 +50,11 @@
           </form>
         </div>
 
-        <div> <!-- loop over articles -->
-          <h2>Blog Post Title</a></h2>
-          <p><span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM</p>
+        <div ng-repeat="article in articles"> <!-- loop over articles -->
+          <h2>{{ article.title }}</a></h2>
+          <p><span class="glyphicon glyphicon-time"></span>Posted on {{ article.createdAt }}</p>
           
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora, necessitatibus inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti debitis ipsum officiis rerum.</p>
+          <p>{{ article.content }}</p>
         </div>
       </div>
 
