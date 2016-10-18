@@ -1,15 +1,15 @@
 {
   "name": "Yenda",
   "version": "1.0.0",
-  "devDependencies": {
+  "dependencies": {
     "angular": "1.4.9",
-    "angular-mocks": "1.4.9",
+    "bootstrap": "^3.3.7",
+    "ui.bootstrap": "angular-ui-bootstrap#^2.2.0",
     "bootstrap": "~3.1",
     "angular-bootstrap": "1.1.1",
     "angular-ui-router": "0.2.17"
   },
-  "dependencies": {
-    "bootstrap": "^3.3.7",
-    "ui.bootstrap": "angular-ui-bootstrap#^2.2.0"
+  "devDependencies": {
+    "angular-mocks": "1.4.9",
   }
 }
