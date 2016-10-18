@@ -59,6 +59,23 @@ module.exports = function(grunt) {
       }
     },
 
+    less: {
+      build: {
+        files: {
+          'server/src/public/styles.css': 'client/src/**/*.less'
+        }
+      },
+      compile: {
+        files: {
+          'server/src/public/styles.css': 'client/src/**/*.less'
+        },
+        options: {
+          cleancss: true,
+          compress: true
+        }
+      }
+    },
+
     copy: {
       index: {
         files: [{
@@ -103,7 +120,12 @@ module.exports = function(grunt) {
       tpls: {
         files: ['client/src/**/*.tpl.html'],
         tasks: ['html2js:app']
-      }
+      },
+
+      less: {
+        files: [ 'client/src/**/*.less' ],
+        tasks: [ 'less:build' ]
+      },
     },
   });
   
@@ -126,5 +148,7 @@ module.exports = function(grunt) {
   grunt.registerTask('test', function(target) {
     grunt.task.run(['mochaTest']);
   });
+
+  grunt.registerTask('style', ['less:compile']);
 
 };
