@@ -74,6 +74,15 @@ module.exports = function(grunt) {
           dest: 'server/src/public/index.html'
         }]
       },
+      assets: {
+        files: [{
+          src: ['client/src/assets/banner.png'],
+          dest: 'server/src/public/assets/banner.png'
+        },{
+          src: ['client/src/assets/bootstrap.min.css'],
+          dest: 'server/src/public/assets/bootstrap.min.css'
+        }]
+      },
       vendor: {
         files: [{
           src: ['bower_components/angular/angular.min.js'],
@@ -81,12 +90,6 @@ module.exports = function(grunt) {
         },{
           src: ['bower_components/angular-ui-router/release/angular-ui-router.min.js'],
           dest: 'server/src/public/vendor/angular-ui-router.min.js'
-        }]
-      },
-      styles: {
-        files: [{
-          src: ['bower_components/bootstrap/dist/css/bootstrap.min.css'],
-          dest: 'server/src/public/assets/bootstrap.min.css'
         }]
       }
     },
@@ -135,7 +138,7 @@ module.exports = function(grunt) {
                                'less',
                                'copy:index',
                                'copy:vendor',
-                               'copy:styles',
+                               'copy:assets',
                                'html2js:app']);
 
   grunt.renameTask('watch', 'delta');
