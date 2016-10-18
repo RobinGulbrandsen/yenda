@@ -81,6 +81,21 @@ module.exports = function(grunt) {
         },{
           src: ['client/src/assets/bootstrap.min.css'],
           dest: 'server/src/public/assets/bootstrap.min.css'
+        },{
+          src: ['client/src/assets/fonts/glyphicons-halflings-regular.eot'],
+          dest: 'server/src/public/fonts/glyphicons-halflings-regular.eot'
+        },{
+          src: ['client/src/assets/fonts/glyphicons-halflings-regular.svg'],
+          dest: 'server/src/public/fonts/glyphicons-halflings-regular.svg'
+        },{
+          src: ['client/src/assets/fonts/glyphicons-halflings-regular.ttf'],
+          dest: 'server/src/public/fonts/glyphicons-halflings-regular.ttf'
+        },{
+          src: ['client/src/assets/fonts/glyphicons-halflings-regular.woff'],
+          dest: 'server/src/public/fonts/glyphicons-halflings-regular.woff'
+        },{
+          src: ['client/src/assets/fonts/glyphicons-halflings-regular.woff2'],
+          dest: 'server/src/public/fonts/glyphicons-halflings-regular.woff2'
         }]
       },
       vendor: {

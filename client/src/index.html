@@ -44,9 +44,12 @@
       <!-- NEWS -->
       <div class="col-md-8">
         <div class="new-article">
-          <form>
-            <textarea></textarea>
-            <input type="submit" value="New">
+          <form ng-submit="addArticle()">
+            <label>Title:</label>
+            <input type="text" ng-model="newArticle.title" />
+            <label>Content:</label>
+            <textarea ng-model="newArticle.content"></textarea>
+            <input type="submit" value="Create New">
           </form>
         </div>
 
