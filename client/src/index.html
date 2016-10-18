@@ -25,14 +25,22 @@
   <nav class="navbar-fixed-top">
     <div class="container-fluid">
       <div class="collapse navbar-collapse">
-        <div class="col-md-5 pull-right">
-          <form class="navbar-form" >
+        
+        <div class="col-md-2 pull-right" ng-show="currentUser.username">
+          <form class="navbar-form">
+            <label class="nav-item">Hello, {{ currentUser.username }}</label>
+            <button class="nav-item" class="btn" ng-click="logout()">Logout</button>
+          </form>
+        </div>
+
+        <div class="col-md-5 pull-right" ng-show="!currentUser.username">
+          <form class="navbar-form" ng-click="login()">
             <label class="nav-item">Username:</label>
-            <input class="nav-item"type="text">
+            <input class="nav-item" ng-model="loginUser.username" type="text">
             <label class="nav-item">Password:</label>
-            <input class="nav-item" type="password">
+            <input class="nav-item" ng-model="loginUser.password" type="password">
             <input class="nav-item" type="submit" value="Login">
-            <button class="nav-item" class="btn">Register</button>
+            <button class="nav-item" class="btn" ng-click="register()">Register</button>
           </form>
         </div>        
       </div>
@@ -44,34 +52,40 @@
     
       <!-- NEWS -->
       <div class="col-md-8">
-        <div class="new-article" ng-show="!isEdit">
-          <form ng-submit="addArticle()">
-            <label>Title:<span class="error">{{validation.article.title}}</span></label>
-            <input type="text" ng-model="newArticle.title" />
-            <label>Content:<span class="error">{{validation.article.content}}</span></label>
-            <textarea ng-model="newArticle.content"></textarea>
-            <input type="submit" value="Create New">
-          </form>
-        </div>
+        <div ng-show="currentUser.role === 'Admin'">
+          <div class="new-article" ng-show="!isEdit">
+            <form ng-submit="addArticle()">
+              <label>Title:<span class="error">{{validation.article.title}}</span></label>
+              <input type="text" ng-model="newArticle.title" />
+              <label>Content:<span class="error">{{validation.article.content}}</span></label>
+              <textarea ng-model="newArticle.content"></textarea>
+              <input type="submit" value="Create New">
+            </form>
+          </div>
 
-        <div class="new-article" ng-show="isEdit">
-          <form ng-submit="saveArticleChanges()">
-            <label>Title:</label>
-            <input type="text" ng-model="newArticle.title" />
-            <label>Content:</label>
-            <textarea ng-model="newArticle.content"></textarea>
-            <input type="submit" value="Update">
-            <button ng-click="cancelEditArticle()">Cancel</button>
-          </form>
+          <div class="new-article" ng-show="isEdit">
+            <form ng-submit="saveArticleChanges()">
+              <label>Title:</label>
+              <input type="text" ng-model="newArticle.title" />
+              <label>Content:</label>
+              <textarea ng-model="newArticle.content"></textarea>
+              <input type="submit" value="Update">
+              <button ng-click="cancelEditArticle()">Cancel</button>
+            </form>
+          </div>
         </div>
 
         <div class="articles" ng-repeat="article in articles"> <!-- loop over articles -->
           <h2>
-            <span class="article-glyphicon glyphicon glyphicon-pencil" ng-click="editArticle(article)"></span>
-            <span class="article-glyphicon glyphicon glyphicon-trash" ng-click="removeArticle(article.id)"></span>
+            <span class="article-glyphicon glyphicon glyphicon-pencil"
+                  ng-click="editArticle(article)"
+                  ng-show="currentUser.role === 'Admin'"></span>
+            <span class="article-glyphicon glyphicon glyphicon-trash"
+                  ng-click="removeArticle(article.id)"
+                  ng-show="currentUser.role === 'Admin'"></span>
             {{ article.title }}
           </h2>
-          <p><span class="glyphicon glyphicon-time"></span>Posted on {{ article.createdAt }}</p>
+          <p class="timestamp"><span class="glyphicon glyphicon-time"></span>Posted on {{ article.createdAt }}</p>
           
           <p class="article-content">{{ article.content }}</p>
         </div>

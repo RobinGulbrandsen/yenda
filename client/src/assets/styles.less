@@ -34,6 +34,15 @@ input[type='submit'], button {
               0 -1px black;
 }
 
+p {
+  color: @text-color;
+  border-radius: 4px;
+  text-shadow: -1px 0 black,
+              0 1px black,
+              1px 0 black,
+              0 -1px black;
+}
+
 .intro-header {
   height: 250px;
   width: 100%;
@@ -136,5 +145,9 @@ input[type='submit'], button {
 .articles {
   h2 {
     margin-bottom: 0px;
+  }
+
+  .timestamp {
+    color: @orange-dark;
   }
 }

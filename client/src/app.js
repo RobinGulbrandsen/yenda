@@ -3,20 +3,24 @@ angular.module( 'yenda', [
   'ui.router',
   'ui.bootstrap',
   'yanda.common.http-service',
-  'yanda.common.modal-service'
+  'yanda.common.modal-service',
+  'yanda.common.auth-service'
 ])
 
 .config(function myAppConfig($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/');
 })
 
-.controller('AppCtrl', function AppCtrl($scope, httpService, modalService) {
+.controller('AppCtrl', function AppCtrl($scope, $window, httpService, modalService, authService) {
   $scope.articles = [];
   $scope.newArticle = {};
   $scope.isEdit = false;
   $scope.validation = {
     article: {}
   };
+
+  $scope.loginUser = {};
+  $scope.currentUser = {};
 
   var validateArticle = function() {
     $scope.validation.article = {};
@@ -87,7 +91,7 @@ angular.module( 'yenda', [
 
   $scope.removeArticle = function(id) {
     modalService.confirmDialog("Delete Element", "Are you sure you want to delete?", function() {
-      httpService.deleteElement('news/' + id)
+      httpService.deleteElement('api/news/' + id)
       .success(function(data, status, headers, config) {
         $scope.getAll();
       }).error(function(data, status, headers, config) {
@@ -95,4 +99,27 @@ angular.module( 'yenda', [
       });
     });
   };
+
+  /////////////////// USER /////////////////////////////
+
+  $scope.login = function() {
+    if (!$scope.loginUser.username || !$scope.loginUser.password) {
+      return;
+    }
+
+    authService.signin($scope.loginUser)
+      .then(function (currentUser) {
+        $scope.currentUser = currentUser.data.user;
+        $window.localStorage.setItem('com.yanda', currentUser.token);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
+
+  $scope.logout = function() {
+    $scope.currentUser = {};
+    $window.localStorage.removeItem('com.yanda');
+  };
+
 });
