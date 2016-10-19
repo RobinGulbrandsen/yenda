@@ -92,6 +92,8 @@ angular.module( 'yenda', [
     if ($scope.isEdit === false) {
       return;
     }
+    
+    $scope.isEdit = false;
 
     httpService.update('api/news', $scope.newArticle)
     .success(function(data, status, headers, config) {
